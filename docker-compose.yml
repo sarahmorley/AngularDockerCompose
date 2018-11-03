@@ -1,12 +1,10 @@
-
 version: '2' # specify docker-compose version
 
 services:
   angular: # name of the service
-    build: 
-      context: ./ # specify the directory of the Dockerfile
-      dockerfile: Dockerfile
+    build: ./ # Dockerfile and docker-compose.yml are in the same directory
     ports:
       - "4200:4200" # specify port forewarding
-    volumes:
+    volumes:  # add bind mount of source code to make and see code changes without having to rebuild the image
       - .:/usr/src/app
+    
