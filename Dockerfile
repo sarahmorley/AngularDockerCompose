@@ -24,7 +24,5 @@ RUN npm install \
 # add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-EXPOSE 4200
-
 # Serve the app
 CMD ng serve --host 0.0.0.0 --poll 1
