@@ -11,6 +11,7 @@ RUN mkdir -p /usr/src/app
 
 # Change directory so that commands run inside this new directory
 WORKDIR /usr/src/app
+COPY package.json /usr/src/app
 
 # copy all the code needed to run the 
 COPY . /usr/src/app
@@ -20,7 +21,10 @@ RUN npm install \
 && npm install -g @angular/cli \
 && npm rebuild node-sass
 
-ENV PATH /usr/local/terraform:/home/fdr/src/node_modules/.bin:$PATH
+# add `/usr/src/app/node_modules/.bin` to $PATH
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+EXPOSE 4200
 
 # Serve the app
-CMD ng serve --host 0.0.0.0
+CMD ng serve --host 0.0.0.0 --poll 1
